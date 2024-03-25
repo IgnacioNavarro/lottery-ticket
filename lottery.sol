@@ -29,12 +29,11 @@ contract Lottery {
     }
 
     function lotteryWinner() public onlyOwner {
-        //If the participants are equal or greater than 3 then other lines execute else the next line execute
         require(participants.length >= 1, "You need at least 1 participant");
         uint randomNumber = random(); 
         uint winnerIndex = randomNumber % participants.length;
         address payable winner = participants[winnerIndex];
-        winner.transfer(getBalance()); //All amount which is in getBalance will transfer to the winner
-        participants = new address payable[](0); //After the Lottery ends array will be 0
+        winner.transfer(getBalance());
+        participants = new address payable[](0);
     }
 }
